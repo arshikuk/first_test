@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full Screen Clock</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+    
+    #clock {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 300px;
+      font-family: "Arial", sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+  <span id="clock1" 
+  style="display: inline; 
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      transform: translate(-50%, -50%);
+      color: #3f3e3e;
+      font-size: 200px;
+      font-family: Arial, sans-serif"></span>
+  
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+      
+      var timeString = format(hours) + ':' + padZero(minutes); 
+      var lol = moment(hours);
+      
+      document.getElementById('clock').textContent = timeString;
+      document.getElementById('clock1').textContent = lol;
+    }
+    
+    function padZero(value) {
+      return (value < 10) ? '0' + value : value;
+    }
+
+    function format(value){
+      return (value>12) ? (value-12) : value ;
+    }
+
+    function moment(value){
+      return (value>12) ? "PM" : "AM";
+    }
+    
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
